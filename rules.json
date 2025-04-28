@@ -1,0 +1,29 @@
+{
+  "players": {
+    "min": 5,
+    "max": 10
+  },
+  "roles": {
+    "Kenan Evren": 1,
+    "Darbeciler": "player_count_based",
+    "Demokratlar": "remaining_players"
+  },
+  "win_conditions": {
+    "Demokratlar": ["5 Demokrasi Reformu", "Kenan Evren öldürülür"],
+    "Darbeciler": ["6 Sıkıyönetim Kararı", "Kenan Evren Cumhurbaşkanı olur"]
+  },
+  "round_flow": [
+    "Cumhurbaşkanı seçimi",
+    "Başbakan adayı",
+    "Oylama",
+    "Yasa kartı seçimi",
+    "Yasa yürürlüğe girer",
+    "Özel yetkiler açılır (gerekiyorsa)"
+  ],
+  "special_powers": {
+    "sorgulama": "Kimlik öğrenme",
+    "ihraç": "Oyuncuyu oyundan çıkarma",
+    "doğrudan başbakan seçimi": "Başbakanı atama",
+    "kaos modu": "3 başarısız oylamada yasa otomatik geçer"
+  }
+} 
