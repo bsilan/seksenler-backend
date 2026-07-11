@@ -28,7 +28,7 @@ Yani bugün bu backend ile **oda kurup insanları bir araya getirebilirsin ama o
 
 | # | Özellik | Neden bu sırada |
 |---|---|---|
-| 1 | **Rol atama** (`start_game` içinde) | Oyunun her adımı role bağlı; bu olmadan hiçbir tur mantığı yazılamaz. |
+| 1 | ✅ **Rol atama** (`start_game` içinde) — TAMAMLANDI | Oyuncu sayısına göre 1 Kenan Evren + 1-3 Darbeci + kalan Demokrat dağıtılıyor; her oyuncu `GET /my_role/{game_id}/{player_id}` ile kendi rolünü görüyor, Darbeciler takım arkadaşlarını biliyor. Min/max oyuncu ve geç katılım kontrolleri eklendi. |
 | 2 | **Tur döngüsü — Cumhurbaşkanı/Başbakan seçimi + oylama** | Oyunun çekirdek etkileşimi. Rol ataması bittikten sonra ilk oynanabilir versiyon budur. |
 | 3 | **Yasa kartı seçimi ve yürürlüğe girmesi** | Oylama olmadan anlamsız, oylamadan hemen sonra gelir. |
 | 4 | **Kazanma koşulu kontrolü** (5 Demokrasi Reformu / 6 Sıkıyönetim / Kenan Evren öldürülür veya Cumhurbaşkanı olur) | Bu olmadan oyun asla "bitmiyor" — oynanabilirlik için zorunlu. |
