@@ -29,10 +29,10 @@ Yani bugün bu backend ile **oda kurup insanları bir araya getirebilirsin ama o
 | # | Özellik | Neden bu sırada |
 |---|---|---|
 | 1 | ✅ **Rol atama** (`start_game` içinde) — TAMAMLANDI | Oyuncu sayısına göre 1 Kenan Evren + 1-3 Darbeci + kalan Demokrat dağıtılıyor; her oyuncu `GET /my_role/{game_id}/{player_id}` ile kendi rolünü görüyor, Darbeciler takım arkadaşlarını biliyor. Min/max oyuncu ve geç katılım kontrolleri eklendi. |
-| 2 | **Tur döngüsü — Cumhurbaşkanı/Başbakan seçimi + oylama** | Oyunun çekirdek etkileşimi. Rol ataması bittikten sonra ilk oynanabilir versiyon budur. |
-| 3 | **Yasa kartı seçimi ve yürürlüğe girmesi** | Oylama olmadan anlamsız, oylamadan hemen sonra gelir. |
-| 4 | **Kazanma koşulu kontrolü** (5 Demokrasi Reformu / 6 Sıkıyönetim / Kenan Evren öldürülür veya Cumhurbaşkanı olur) | Bu olmadan oyun asla "bitmiyor" — oynanabilirlik için zorunlu. |
-| 5 | **Özel yetkiler** (sorgulama, ihraç, doğrudan başbakan seçimi, kaos modu) | Oyunun derinliği için önemli ama temel döngü çalışmadan anlamı yok — sona bırakılabilir. |
+| 2 | ✅ **Tur döngüsü — seçim + oylama** — TAMAMLANDI | Cumhurbaşkanlığı rotasyonu, Başbakan adayı gösterme (dönem sınırları ile), açık oylama ve kaos modu (3 başarısız seçimde en üstteki yasa otomatik yürürlüğe girer) Secret Hitler kurallarına birebir uygun çalışıyor. |
+| 3 | ✅ **Yasa kartı seçimi** — TAMAMLANDI | 17 kartlık deste (6 Reform + 11 Sıkıyönetim), Cumhurbaşkanı 3 çeker 1 eler, Başbakan 2'den 1'ini yürürlüğe koyar; eller yalnızca sahibine görünür; deste bitince ıskarta karıştırılıp tazelenir. |
+| 4 | ✅ **Kazanma koşulları** — TAMAMLANDI (infaz hariç) | 5 Reform → Demokratlar; 6 Sıkıyönetim → Darbeciler; 3+ Sıkıyönetim varken Kenan Evren Başbakan seçilirse → Darbeciler. "Kenan Evren öldürülür" koşulu infaz yetkisiyle birlikte gelecek (madde 5). |
+| 5 | **Özel yetkiler + veto** (İterasyon 2) | Sıkıyönetim kartları yürürlüğe girdikçe açılan yetkiler: kart gözetleme, sorgulama, özel seçim, infaz (Kenan Evren ölürse Demokratlar kazanır) ve 5. Sıkıyönetim'den sonra veto hakkı. |
 | 6 | **Frontend** (React — CORS ayarı zaten buna göre yapılmış) | Bugüne kadarki her şey API üzerinden test edilebilir (Postman/curl), ama gerçek kullanıcı testi için şart. |
 | 7 | **Deploy** (`runtime.txt` mevcut — Heroku benzeri bir platforma hazırlanmış) | Gerçek kullanıcılarla test etmeden önce gerekli. |
 | 8 | **Kalıcı veri saklama** (bellek yerine DB/Redis) | Tek sunucu, düşük kullanıcı sayısıyla MVP için ertelenebilir; çoklu kullanıcı / production için zorunlu hale gelir. |
