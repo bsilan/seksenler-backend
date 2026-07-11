@@ -194,6 +194,17 @@ def find_player(game: Game, player_id: str) -> Player:
         raise HTTPException(status_code=404, detail="Oyuncu bulunamadı.")
     return player
 
+def find_target(game: Game, data: dict, id_key: str, nickname_key: str) -> Player:
+    """Hedef oyuncuyu id ya da takma adla bulur (id'ler gizli olduğundan
+    frontend hedefleri takma adla gösterir)."""
+    if data.get(id_key):
+        return find_player(game, data[id_key])
+    nickname = data.get(nickname_key)
+    player = next((p for p in game.players if p.nickname == nickname), None)
+    if not player:
+        raise HTTPException(status_code=404, detail="Oyuncu bulunamadı.")
+    return player
+
 def require_phase(game: Game, phase: str):
     if game.phase != phase:
         raise HTTPException(status_code=400, detail=f"Bu işlem şu an yapılamaz (faz: {game.phase}).")
@@ -273,7 +284,7 @@ async def nominate(game_id: str, request: Request):
     require_phase(game, "nomination")
     if data.get("president_id") != game.president_id:
         raise HTTPException(status_code=403, detail="Sadece Cumhurbaşkanı aday gösterebilir.")
-    nominee = find_player(game, data.get("nominee_id"))
+    nominee = find_target(game, data, "nominee_id", "nominee_nickname")
     if not nominee.alive:
         raise HTTPException(status_code=400, detail="Ölü oyuncu aday gösterilemez.")
     if nominee.id == game.president_id:
@@ -395,7 +406,7 @@ async def use_power(game_id: str, request: Request):
         advance_presidency(game)
         return {"power": "peek", "cards": cards}
 
-    target = find_player(game, data.get("target_id"))
+    target = find_target(game, data, "target_id", "target_nickname")
     if not target.alive:
         raise HTTPException(status_code=400, detail="Hedef oyuncu ölü.")
     if target.id == game.president_id:
@@ -516,4 +527,7 @@ def get_game_state(game_id: str, player_id: str):
         state["your_hand"] = game.president_hand
     elif game.phase == "chancellor_cards" and player.id == game.chancellor_id:
         state["your_hand"] = game.chancellor_hand
+    # Oyun bitince tüm kimlikler ifşa edilir.
+    if game.phase == "game_over":
+        state["roles"] = {p.nickname: p.role for p in game.players}
     return state 
