@@ -1,4 +1,6 @@
-const API = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+// Backend, sayfanın açıldığı makinede aranır: bilgisayarda localhost,
+// telefondan Wi-Fi IP'siyle girildiğinde aynı IP. Deploy'da VITE_API_URL ile ezilir.
+const API = import.meta.env.VITE_API_URL || `http://${window.location.hostname}:8000`;
 
 async function req(method, path, body) {
   const res = await fetch(API + path, {
