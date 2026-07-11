@@ -67,6 +67,11 @@ Terminal 2'de şöyle bir çıktı görürsün:
 - **Odalar kayboldu:** Oyunlar bellekte tutulur; backend'i (Terminal 1) kapatıp açarsan tüm odalar silinir. Oyun ortasında sunucuları kapatma.
 - **`pip` / `npm` bulunamadı:** Python/Node kurulumundan sonra terminali kapatıp yeniden açman gerekir.
 
+## İnternete Açma
+
+Arkadaşların Wi-Fi şartı olmadan, her yerden linkle katılsın istiyorsan: frontend **Vercel**'e,
+backend **Render**'a kurulur (ikisi de ücretsiz). Tıklama tıklama rehber: [`DEPLOY.md`](DEPLOY.md)
+
 ## Testler
 
 Uçtan uca test scriptleri geliştirme oturumlarında `scratchpad` üzerinden koşuluyor; API'yi elle denemek istersen backend çalışırken `http://localhost:8000/docs` adresinde FastAPI'nin hazır arayüzü var.
